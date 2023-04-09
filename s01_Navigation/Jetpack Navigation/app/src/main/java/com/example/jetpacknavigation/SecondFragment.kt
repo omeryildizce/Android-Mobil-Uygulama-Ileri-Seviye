@@ -10,7 +10,7 @@ import com.example.jetpacknavigation.databinding.FragmentSecondBinding
 
 class SecondFragment : Fragment() {
     private lateinit var binding: FragmentSecondBinding
-
+    private  var myAge = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -26,7 +26,12 @@ class SecondFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        arguments?.let {
+            myAge = SecondFragmentArgs.fromBundle(it).age
+            var text = binding.secondFragmentText.text.toString()
+            text += "\n$myAge"
+            binding.secondFragmentText.text = text
+        }
         binding.gotoFirstFragment.setOnClickListener {
             val action = SecondFragmentDirections.actionSecondFragmentToFirstFragment()
             Navigation.findNavController(it).navigate(action)
