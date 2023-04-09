@@ -29,8 +29,8 @@ class FirstFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.gotoSecondFragment.setOnClickListener {
             val action = FirstFragmentDirections.actionFirstFragmentToSecondFragment()
-            
-            Navigation.findNavController(it).navigate(action)
+            action.age = 10
+             Navigation.findNavController(it).navigate(action)
         }
     }
 }
