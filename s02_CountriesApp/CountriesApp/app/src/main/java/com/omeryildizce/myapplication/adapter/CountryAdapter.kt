@@ -6,12 +6,15 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.omeryildizce.myapplication.databinding.ItemCountryBinding
 import com.omeryildizce.myapplication.model.Country
+import com.omeryildizce.myapplication.util.downloadFromUrl
+import com.omeryildizce.myapplication.util.placeHolderProgressBar
 import com.omeryildizce.myapplication.view.FeedFragmentDirections
 
 
 class CountryAdapter(val countryList: ArrayList<Country>) :
     RecyclerView.Adapter<CountryAdapter.CountryViewHolder>() {
-    class CountryViewHolder(val binding: ItemCountryBinding) : RecyclerView.ViewHolder(binding.root) {
+    class CountryViewHolder(val binding: ItemCountryBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
     }
 
@@ -27,13 +30,17 @@ class CountryAdapter(val countryList: ArrayList<Country>) :
     override fun onBindViewHolder(holder: CountryViewHolder, position: Int) {
         holder.binding.name.text = countryList.get(position).name
         holder.binding.region.text = countryList.get(position).region
+        holder.binding.imageView.downloadFromUrl(
+            countryList.get(position).imageUrl,
+            placeHolderProgressBar(holder.binding.root.context)
+        )
         holder.itemView.setOnClickListener {
             val action = FeedFragmentDirections.actionFeedFragmentToCountryFragment()
             Navigation.findNavController(it).navigate(action)
         }
     }
 
-    fun updateCountryList(newCountryList: List<Country>){
+    fun updateCountryList(newCountryList: List<Country>) {
         countryList.clear()
         countryList.addAll(newCountryList)
         notifyDataSetChanged()
