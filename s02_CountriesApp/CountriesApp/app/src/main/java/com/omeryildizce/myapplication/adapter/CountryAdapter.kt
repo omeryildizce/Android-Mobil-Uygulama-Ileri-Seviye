@@ -35,7 +35,8 @@ class CountryAdapter(val countryList: ArrayList<Country>) :
             placeHolderProgressBar(holder.binding.root.context)
         )
         holder.itemView.setOnClickListener {
-            val action = FeedFragmentDirections.actionFeedFragmentToCountryFragment()
+            val action =  FeedFragmentDirections.actionFeedFragmentToCountryFragment()
+            action.countryUuid = countryList.get(position).uuid
             Navigation.findNavController(it).navigate(action)
         }
     }
