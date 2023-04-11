@@ -7,7 +7,6 @@ import com.omeryildizce.myapplication.model.Country
 import com.omeryildizce.myapplication.service.CountryAPIService
 import com.omeryildizce.myapplication.service.CountryDatabase
 import com.omeryildizce.myapplication.util.CustomSharedPrefeferences
-
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableSingleObserver
@@ -36,8 +35,11 @@ class FeedViewModel(application: Application) : BaseViewModel(application) {
         }
 
     }
-
+    fun refreshFromApi(){
+        getDataFromAPI()
+    }
     private fun getDataFromSQLite() {
+        countryLoading.value = true
         launch {
             val countries = CountryDatabase(getApplication()).countryDao().getAllCountries()
             showCountries(countries)
@@ -92,5 +94,10 @@ class FeedViewModel(application: Application) : BaseViewModel(application) {
         customPreferences.saveTime(System.nanoTime())
 
 
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        disposable.clear()
     }
 }
