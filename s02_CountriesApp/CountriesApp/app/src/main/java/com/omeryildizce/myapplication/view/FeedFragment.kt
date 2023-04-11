@@ -46,7 +46,7 @@ class FeedFragment : Fragment() {
             binding.countryList.visibility  = View.GONE
             binding.countryError.visibility = View.GONE
 
-            viewModel.refreshData()
+            viewModel.refreshFromApi()
         }
         observeLiveData()
 
