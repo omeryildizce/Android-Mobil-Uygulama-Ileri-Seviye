@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.omeryildizce.myapplication.R
 import com.omeryildizce.myapplication.adapter.CountryAdapter
 import com.omeryildizce.myapplication.databinding.FragmentFeedBinding
 import com.omeryildizce.myapplication.viewmodel.FeedViewModel
@@ -16,7 +15,7 @@ import com.omeryildizce.myapplication.viewmodel.FeedViewModel
 class FeedFragment : Fragment() {
     private lateinit var binding: FragmentFeedBinding
     private lateinit var viewModel: FeedViewModel
-    private lateinit var countryAdapter: CountryAdapter
+    private   var countryAdapter: CountryAdapter = CountryAdapter(arrayListOf())
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -32,11 +31,23 @@ class FeedFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProvider(this).get(FeedViewModel::class.java)
+
+            viewModel = ViewModelProvider(this).get(FeedViewModel::class.java)
         viewModel.refreshData()
+
         binding.countryList.layoutManager = LinearLayoutManager(context)
-        countryAdapter = CountryAdapter(arrayListOf())
         binding.countryList.adapter = countryAdapter
+
+
+        binding.swipeRefreshLayout.setOnRefreshListener {
+            binding.swipeRefreshLayout.isRefreshing = false
+            binding.countryLoading.visibility = View.VISIBLE
+
+            binding.countryList.visibility  = View.GONE
+            binding.countryError.visibility = View.GONE
+
+            viewModel.refreshData()
+        }
         observeLiveData()
 
     }
@@ -54,7 +65,7 @@ class FeedFragment : Fragment() {
                 if (it){
                     binding.countryError.visibility = View.VISIBLE
                 }else{
-                    binding.countryError.visibility = View.INVISIBLE
+                    binding.countryError.visibility = View.GONE
                 }
             }
         })
@@ -65,7 +76,7 @@ class FeedFragment : Fragment() {
                     binding.countryList.visibility = View.GONE
                     binding.countryError.visibility = View.GONE
                 }else{
-                    binding.countryLoading.visibility = View.INVISIBLE
+                    binding.countryLoading.visibility = View.GONE
 
                 }
             }
