@@ -3,6 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <variable
+            name="country"
+            type="com.omeryildizce.myapplication.model.Country" />
+
+
+    </data>
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -13,16 +21,23 @@
         app:cardPreventCornerOverlap="true">
 
         <LinearLayout
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
+            <TextView
+                android:id="@+id/countryUuid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:text="@{String.valueOf(country.uuid)}"/>
 
             <ImageView
                 android:id="@+id/imageView"
                 android:layout_width="180dp"
                 android:layout_height="120dp"
                 android:scaleType="fitXY"
-                android:src="@drawable/ic_launcher_foreground" />
+                android:downloadUrl="@{country.imageUrl}" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -34,7 +49,7 @@
                     android:id="@+id/name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Title"
+                    android:text="@{country.name}"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
@@ -43,13 +58,13 @@
                     android:layout_height="2dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
-                    android:background="#757575"/>
+                    android:background="#757575" />
 
                 <TextView
                     android:id="@+id/region"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Description"
+                    android:text="@{country.region}"
                     android:textSize="16sp" />
 
             </LinearLayout>
