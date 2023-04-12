@@ -47,14 +47,7 @@ class CountryFragment : Fragment() {
         viewModel.countryLiveData.observe(viewLifecycleOwner, Observer {
                 country ->
             country?.let {
-                binding.countryNameTextView.text = it.name
-                binding.capitalTextView.text = it.capital
-                binding.regionTextView.text = it.region
-                binding.currencyTextView.text = it.currency
-                binding.languageTextView.text = it.language
-                context?.let { context->
-                     binding.countryImageView.downloadFromUrl(it.imageUrl, placeHolderProgressBar(context))
-                }
+                binding.country = country
             }
         })
     }
