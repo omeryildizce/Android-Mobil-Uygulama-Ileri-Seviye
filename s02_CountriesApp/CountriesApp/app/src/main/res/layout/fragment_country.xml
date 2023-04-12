@@ -3,6 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     >
+    <data>
+        <variable
+            name="country"
+            type="com.omeryildizce.myapplication.model.Country" />
+    </data>
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -24,6 +29,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:scaleType="fitXY"
+                android:downloadUrl="@{country.imageUrl}"
                 android:src="@drawable/gradient_background" />
 
             <TextView
@@ -31,7 +37,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Algeria"
+                android:text="@{country.name}"
+
                 android:textSize="32sp"
                 android:textStyle="bold" />
 
@@ -40,14 +47,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Capital: Algiers"
+                android:text="@{country.capital}"
                 android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/regionTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Region: Africa"
+                android:text="@{country.region}"
                 android:textSize="20sp"
                 android:layout_marginTop="8dp" />
 
@@ -55,7 +62,7 @@
                 android:id="@+id/languageTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Language: Arabic"
+                android:text="@{country.language}"
                 android:textSize="20sp"
                 android:layout_marginTop="8dp" />
 
@@ -63,7 +70,7 @@
                 android:id="@+id/currencyTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Currency: DZD"
+                android:text="@{country.currency}"
                 android:textSize="20sp"
                 android:layout_marginTop="8dp" />
 
