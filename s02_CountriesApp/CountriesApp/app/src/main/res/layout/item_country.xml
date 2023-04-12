@@ -25,12 +25,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-            <TextView
-                android:id="@+id/countryUuid"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:visibility="gone"
-                android:text="@{String.valueOf(country.uuid)}"/>
 
             <ImageView
                 android:id="@+id/imageView"
