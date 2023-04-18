@@ -36,11 +36,11 @@ class MainActivity : ComponentActivity() {
                         CryptoListScreen(navController)
                     }
 
-                    composable("crypto_detail_screen/{cryptoId}/{cryptoPrice}", arguments = listOf(
+                    composable("crypto_detail_screen/{cryptoId}/{cryptoName}", arguments = listOf(
                         navArgument("cryptoId") {
                             type = NavType.StringType
                         },
-                        navArgument("cryptoPrice") {
+                        navArgument("cryptoName") {
                             type = NavType.StringType
                         }
                     )) {
@@ -49,7 +49,7 @@ class MainActivity : ComponentActivity() {
                             it.arguments?.getString("cryptoId")
                         }
                         val cryptoPrice = remember {
-                            it.arguments?.getString("cryptoPrice")
+                            it.arguments?.getString("cryptoName")
                         }
                         CryptoDetailsScreen(cryptoId ?: "", cryptoPrice ?: "", navController)
                     }
