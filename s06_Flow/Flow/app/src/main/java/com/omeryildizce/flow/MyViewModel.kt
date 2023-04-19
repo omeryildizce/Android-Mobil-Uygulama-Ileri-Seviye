@@ -1,9 +1,13 @@
 package com.omeryildizce.flow
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.filter
@@ -23,20 +27,22 @@ class MyViewModel : ViewModel() {
             emit(counter)
         }
     }
+
     init {
         collectInViewModel()
     }
+
     private fun collectInViewModel() {
         viewModelScope.launch {
             coutDownTimerFlow
                 .filter {
-                    it%3 == 0
+                    it % 3 == 0
                 }.map {
                     it + it
                 }
                 .collect {
-                println(it)
-            }
+                    println(it)
+                }
 
             coutDownTimerFlow.collectLatest {
                 delay(2000)
@@ -45,6 +51,30 @@ class MyViewModel : ViewModel() {
         }
     }
 
-    // Live data
-    private val liveData = MutableLiveData<String>("Kotlin Live Data")
+    // Live data comparision
+    private val _liveData = MutableLiveData<String>("Kotlin Live Data")
+    val liveData: LiveData<String> = _liveData
+
+    fun changeLiveDataValue() {
+        _liveData.value = "Live Data"
+
+    }
+
+
+    private val _stateFlow = MutableStateFlow("Kotlin State Flow")
+    val stateFlow = _stateFlow
+    private val _sharedFlow = MutableSharedFlow<String>()
+    val sharedFlow = _sharedFlow.asSharedFlow()
+
+    fun changeStateFlowValue() {
+        _stateFlow.value = "State Flow"
+    }
+
+    fun changeSharedFlow() {
+        viewModelScope.launch {
+            _sharedFlow.emit("Shared Flow")
+        }
+    }
+
 }
+
