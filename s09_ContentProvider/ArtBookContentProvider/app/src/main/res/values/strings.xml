@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">ArtBookContentProvider</string>
+    <string name="add_art">Add Art</string>
+    <string name="add_art_image">Add art</string>
 </resources>
