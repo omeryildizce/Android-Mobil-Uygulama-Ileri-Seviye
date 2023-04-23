@@ -1,59 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="16dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#44000000">
+    android:layout_margin="16dp">
 
-    <RelativeLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_gravity="center">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/fragment_popup_imageview"
-            android:layout_centerInParent="true"/>
+    android:background="#FEFAFD"
+    android:orientation="vertical">
 
-        <ProgressBar
+
+        <RelativeLayout
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_gravity="center">
+
+            <ImageView
+                android:id="@+id/fragment_popup_imageview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:scaleType="centerCrop" />
+
+            <ProgressBar
+                android:id="@+id/fragment_popup_progressbar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/fragment_popup_name_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/fragment_popup_progressbar"
-            android:layout_centerInParent="true"
-            />
+            android:layout_gravity="center"
+            android:layout_marginTop="24dp"
+            android:text="nameText"
+            android:textAlignment="center"
+            android:textColor="#333333"
+            android:textSize="24sp"
+            android:textStyle="bold" />
 
-    </RelativeLayout>
+        <TextView
+            android:id="@+id/fragment_popup_description_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="8dp"
+            android:text="descriptionText"
+            android:textAlignment="center"
+            android:textColor="#666666"
+            android:textSize="18sp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="nameText"
-        android:layout_gravity="center"
-        android:textSize="20sp"
-        android:textAlignment="center"
-        android:id="@+id/fragment_popup_name_textview"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="descriptionText"
-        android:layout_gravity="center"
-        android:textSize="20sp"
-        android:textAlignment="center"
-        android:id="@+id/fragment_popup_description_textview"/>
-
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="calorieText"
-        android:layout_gravity="center"
-        android:textSize="20sp"
-        android:textAlignment="center"
-        android:id="@+id/fragment_popup_calorie_textview"/>
+        <TextView
+            android:id="@+id/fragment_popup_calorie_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp"
+            android:text="calorieText"
+            android:textAlignment="center"
+            android:textColor="#666666"
+            android:textSize="18sp" />
 
 
 </LinearLayout>
+</androidx.cardview.widget.CardView>
